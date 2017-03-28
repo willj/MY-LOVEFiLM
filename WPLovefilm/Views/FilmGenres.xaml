@@ -1,0 +1,102 @@
+﻿<phone:PhoneApplicationPage 
+    x:Class="WPLovefilm.Views.FilmGenres"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="480"
+    shell:SystemTray.IsVisible="True"
+    toolkit:TiltEffect.IsTiltEnabled="True">
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="{StaticResource LFBackgroundBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="32"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--TitlePanel contains the name of the application and page title-->
+        <StackPanel x:Name="TitlePanel" Grid.Row="1" Margin="12,17,0,28">
+            <TextBlock x:Name="ApplicationTitle" Text="FILM + TV" Style="{StaticResource PhoneTextNormalStyle}" Foreground="{StaticResource LFForegroundBrush}"/>
+            <TextBlock x:Name="PageTitle" Text="genres" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}" Foreground="{StaticResource LFForegroundBrush}"/>
+        </StackPanel>
+
+        <!--ContentPanel - place additional content here-->
+        <Grid x:Name="ContentPanel" Grid.Row="2" Margin="12,0,12,0">
+            <ListBox>
+                <ListBoxItem>
+                    <HyperlinkButton Content="Action/Adventure" NavigateUri="/Views/TitleListing.xaml?type=Title&amp;refine=Genres&amp;genre=Action/Adventure" Style="{StaticResource BrowseHyperlinkButton}" />
+                </ListBoxItem>
+                <ListBoxItem>
+                    <HyperlinkButton Content="Adult" NavigateUri="/Views/TitleListing.xaml?type=Title&amp;refine=Genres&amp;genre=Adult" Style="{StaticResource BrowseHyperlinkButton}" />
+                </ListBoxItem>
+                <ListBoxItem>
+                    <HyperlinkButton Content="Animated" NavigateUri="/Views/TitleListing.xaml?type=Title&amp;refine=Genres&amp;genre=Animated" Style="{StaticResource BrowseHyperlinkButton}" />
+                </ListBoxItem>
+                <ListBoxItem>
+                    <HyperlinkButton Content="Anime" NavigateUri="/Views/TitleListing.xaml?type=Title&amp;refine=Genres&amp;genre=Anime" Style="{StaticResource BrowseHyperlinkButton}" />
+                </ListBoxItem>
+                <ListBoxItem>
+                    <HyperlinkButton Content="Audio Descriptive" NavigateUri="/Views/TitleListing.xaml?type=Title&amp;refine=Genres&amp;genre=Audio Descriptive" Style="{StaticResource BrowseHyperlinkButton}" />
+                </ListBoxItem>
+                <ListBoxItem>
+                    <HyperlinkButton Content="Bollywood" NavigateUri="/Views/TitleListing.xaml?type=Title&amp;refine=Genres&amp;genre=Bollywood" Style="{StaticResource BrowseHyperlinkButton}" />
+                </ListBoxItem>
+                <ListBoxItem>
+                    <HyperlinkButton Content="Children" NavigateUri="/Views/TitleListing.xaml?type=Title&amp;refine=Genres&amp;genre=Children" Style="{StaticResource BrowseHyperlinkButton}" />
+                </ListBoxItem>
+                <ListBoxItem>
+                    <HyperlinkButton Content="Comedy" NavigateUri="/Views/TitleListing.xaml?type=Title&amp;refine=Genres&amp;genre=Comedy" Style="{StaticResource BrowseHyperlinkButton}" />
+                </ListBoxItem>
+                <ListBoxItem>
+                    <HyperlinkButton Content="Documentary" NavigateUri="/Views/TitleListing.xaml?type=Title&amp;refine=Genres&amp;genre=Documentary" Style="{StaticResource BrowseHyperlinkButton}" />
+                </ListBoxItem>
+                <ListBoxItem>
+                    <HyperlinkButton Content="Drama" NavigateUri="/Views/TitleListing.xaml?type=Title&amp;refine=Genres&amp;genre=Drama" Style="{StaticResource BrowseHyperlinkButton}" />
+                </ListBoxItem>
+                <ListBoxItem>
+                    <HyperlinkButton Content="Family" NavigateUri="/Views/TitleListing.xaml?type=Title&amp;refine=Genres&amp;genre=Family" Style="{StaticResource BrowseHyperlinkButton}" />
+                </ListBoxItem>
+                <ListBoxItem>
+                    <HyperlinkButton Content="Gay/Lesbian" NavigateUri="/Views/TitleListing.xaml?type=Title&amp;refine=Genres&amp;genre=Gay/Lesbian" Style="{StaticResource BrowseHyperlinkButton}" />
+                </ListBoxItem>
+                <ListBoxItem>
+                    <HyperlinkButton Content="Horror" NavigateUri="/Views/TitleListing.xaml?type=Title&amp;refine=Genres&amp;genre=Horror" Style="{StaticResource BrowseHyperlinkButton}" />
+                </ListBoxItem>
+                <ListBoxItem>
+                    <HyperlinkButton Content="Music/Musical" NavigateUri="/Views/TitleListing.xaml?type=Title&amp;refine=Genres&amp;genre=Music/Musical" Style="{StaticResource BrowseHyperlinkButton}" />
+                </ListBoxItem>
+                <ListBoxItem>
+                    <HyperlinkButton Content="Romance" NavigateUri="/Views/TitleListing.xaml?type=Title&amp;refine=Genres&amp;genre=Romance" Style="{StaticResource BrowseHyperlinkButton}" />
+                </ListBoxItem>
+                <ListBoxItem>
+                    <HyperlinkButton Content="Sci-Fi/Fantasy" NavigateUri="/Views/TitleListing.xaml?type=Title&amp;refine=Genres&amp;genre=Sci-Fi/Fantasy" Style="{StaticResource BrowseHyperlinkButton}" />
+                </ListBoxItem>
+                <ListBoxItem>
+                    <HyperlinkButton Content="Special Interest" NavigateUri="/Views/TitleListing.xaml?type=Title&amp;refine=Genres&amp;genre=Special Interest" Style="{StaticResource BrowseHyperlinkButton}" />
+                </ListBoxItem>
+                <ListBoxItem>
+                    <HyperlinkButton Content="Sport" NavigateUri="/Views/TitleListing.xaml?type=Title&amp;refine=Genres&amp;genre=Sport" Style="{StaticResource BrowseHyperlinkButton}" />
+                </ListBoxItem>
+                <ListBoxItem>
+                    <HyperlinkButton Content="Teen" NavigateUri="/Views/TitleListing.xaml?type=Title&amp;refine=Genres&amp;genre=Teen" Style="{StaticResource BrowseHyperlinkButton}" />
+                </ListBoxItem>
+                <ListBoxItem>
+                    <HyperlinkButton Content="Television" NavigateUri="/Views/TitleListing.xaml?type=Title&amp;refine=Genres&amp;genre=Television" Style="{StaticResource BrowseHyperlinkButton}" />
+                </ListBoxItem>
+                <ListBoxItem>
+                    <HyperlinkButton Content="Thriller" NavigateUri="/Views/TitleListing.xaml?type=Title&amp;refine=Genres&amp;genre=Thriller" Style="{StaticResource BrowseHyperlinkButton}" />
+                </ListBoxItem>
+                <ListBoxItem>
+                    <HyperlinkButton Content="World Cinema" NavigateUri="/Views/TitleListing.xaml?type=Title&amp;refine=Genres&amp;genre=World Cinema" Style="{StaticResource BrowseHyperlinkButton}" />
+                </ListBoxItem>
+            </ListBox>
+        </Grid>
+    </Grid>
+
+</phone:PhoneApplicationPage>

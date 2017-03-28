@@ -1,0 +1,292 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.20506</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{1F04D290-7B66-4EB8-B7F3-3D8C036FE204}</ProjectGuid>
+    <ProjectTypeGuids>{C089C8C0-30E0-4E22-80C0-CE093F111A43};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WPLovefilm</RootNamespace>
+    <AssemblyName>WPLovefilm</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
+    <TargetFrameworkProfile>WindowsPhone71</TargetFrameworkProfile>
+    <TargetFrameworkIdentifier>Silverlight</TargetFrameworkIdentifier>
+    <SilverlightApplication>true</SilverlightApplication>
+    <SupportedCultures>
+    </SupportedCultures>
+    <XapOutputs>true</XapOutputs>
+    <GenerateSilverlightManifest>true</GenerateSilverlightManifest>
+    <XapFilename>WPLovefilm.xap</XapFilename>
+    <SilverlightManifestTemplate>Properties\AppManifest.xml</SilverlightManifestTemplate>
+    <SilverlightAppEntry>WPLovefilm.App</SilverlightAppEntry>
+    <ValidateXaml>true</ValidateXaml>
+    <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
+    <Utf8Output>true</Utf8Output>
+    <ExpressionBlendVersion>4.0.20901.0</ExpressionBlendVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Bin\Release</OutputPath>
+    <DefineConstants>TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Phone" />
+    <Reference Include="Microsoft.Phone.Controls" />
+    <Reference Include="Microsoft.Phone.Controls.Toolkit, Version=7.0.0.0, Culture=neutral, PublicKeyToken=b772ad94eb9ca604, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\Visual Studio 2010\Projects\WPLovefilm\WPLovefilm\Bin\Release\Microsoft.Phone.Controls.Toolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Phone.Interop" />
+    <Reference Include="Microsoft.Xna.Framework" />
+    <Reference Include="System.Windows" />
+    <Reference Include="system" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Xml.Serialization" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\Account.cs" />
+    <Compile Include="Helpers\BackgroundAgentHelper.cs" />
+    <Compile Include="Helpers\MemoryDiagnosticsHelper.cs" />
+    <Compile Include="Helpers\MessageHelper.cs" />
+    <Compile Include="Helpers\SmartDispatcher.cs" />
+    <Compile Include="Helpers\ValueConverters.cs" />
+    <Compile Include="MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Catalog.cs" />
+    <Compile Include="Models\LFFilter.cs" />
+    <Compile Include="Models\LFFormat.cs" />
+    <Compile Include="Models\LFQueue.cs" />
+    <Compile Include="Models\LFUser.cs" />
+    <Compile Include="Models\LFTitle.cs" />
+    <Compile Include="Models\PNTrailer.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\Filter.cs" />
+    <Compile Include="Service\Format.cs" />
+    <Compile Include="Service\PNTrailerService.cs" />
+    <Compile Include="Service\Queue.cs" />
+    <Compile Include="Service\ServiceBase.cs" />
+    <Compile Include="Service\Title.cs" />
+    <Compile Include="Service\User.cs" />
+    <Compile Include="UserControls\FormatDialog.xaml.cs">
+      <DependentUpon>FormatDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\HotlistFilterDialog.xaml.cs">
+      <DependentUpon>HotlistFilterDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\StatusMessageControl.xaml.cs">
+      <DependentUpon>StatusMessageControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\AtHomeTitleViewModel.cs" />
+    <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\QueueViewModel.cs" />
+    <Compile Include="ViewModels\RentedTitlesViewModel.cs" />
+    <Compile Include="ViewModels\TitleListingViewModel.cs" />
+    <Compile Include="ViewModels\ViewModelBase.cs" />
+    <Compile Include="ViewModels\ViewTitleViewModel.cs" />
+    <Compile Include="Views\Login.xaml.cs">
+      <DependentUpon>Login.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RentedTitles.xaml.cs">
+      <DependentUpon>RentedTitles.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Settings.xaml.cs">
+      <DependentUpon>Settings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ViewAtHomeTitle.xaml.cs">
+      <DependentUpon>ViewAtHomeTitle.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FilmGenres.xaml.cs">
+      <DependentUpon>FilmGenres.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\GameGenres.xaml.cs">
+      <DependentUpon>GameGenres.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\GameListing.xaml.cs">
+      <DependentUpon>GameListing.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SearchResults.xaml.cs">
+      <DependentUpon>SearchResults.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TitleListing.xaml.cs">
+      <DependentUpon>TitleListing.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ViewQueue.xaml.cs">
+      <DependentUpon>ViewQueue.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ViewTitle.xaml.cs">
+      <DependentUpon>ViewTitle.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </ApplicationDefinition>
+    <Page Include="MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\FormatDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\HotlistFilterDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\StatusMessageControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Login.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RentedTitles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Settings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ViewAtHomeTitle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\FilmGenres.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\GameGenres.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\GameListing.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SearchResults.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TitleListing.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ViewQueue.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ViewTitle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\AppManifest.xml" />
+    <None Include="Properties\WMAppManifest.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ApplicationIcon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Background.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Allocations\1disc.png" />
+    <Content Include="Images\Allocations\2discs.png" />
+    <Content Include="Images\Allocations\3discs.png" />
+    <Content Include="Images\Allocations\4discs.png" />
+    <Content Include="Images\Allocations\5discs.png" />
+    <Content Include="Images\appbar.add.rest.png" />
+    <Content Include="Images\appbar.back.rest.png" />
+    <Content Include="Images\appbar.favs.rest.png" />
+    <Content Include="Images\appbar.next.rest.png" />
+    <Content Include="Images\appbar.share.rest.png" />
+    <Content Include="Images\appbar.stop.rest.png" />
+    <Content Include="Images\appbar.play.rest.png" />
+    <Content Include="Images\bbfc_12_50x.png" />
+    <Content Include="Images\bbfc_15_50x.png" />
+    <Content Include="Images\bbfc_18_50x.png" />
+    <Content Include="Images\bbfc_pg_50x.png" />
+    <Content Include="Images\bbfc_u_50x.png" />
+    <Content Include="Images\FilterActive.jpg" />
+    <Content Include="Images\HalfDiscIcon.png" />
+    <Content Include="Images\largestars.png" />
+    <Content Include="Images\largestarsgrey.png" />
+    <Content Include="Images\LFLogo.jpg" />
+    <Content Include="Images\MaroonCheckIcon.png" />
+    <Content Include="Images\MaroonCircle.jpg" />
+    <Content Include="Images\MaroonSearchIcon.png" />
+    <Content Include="Images\mbw.jpg" />
+    <Content Include="Images\NoCoverMedium.jpg" />
+    <Content Include="Images\NoCoverSmall.jpg" />
+    <Content Include="Images\playicon.jpg" />
+    <Content Include="Images\Priority\High.png" />
+    <Content Include="Images\Priority\Low.png" />
+    <Content Include="Images\Priority\Medium.png" />
+    <Content Include="Images\Ratings\Stars0.0.jpg" />
+    <Content Include="Images\Ratings\Stars0.5.jpg" />
+    <Content Include="Images\Ratings\Stars1.0.jpg" />
+    <Content Include="Images\Ratings\Stars1.5.jpg" />
+    <Content Include="Images\Ratings\Stars2.0.jpg" />
+    <Content Include="Images\Ratings\Stars2.5.jpg" />
+    <Content Include="Images\Ratings\Stars3.0.jpg" />
+    <Content Include="Images\Ratings\Stars3.5.jpg" />
+    <Content Include="Images\Ratings\Stars4.0.jpg" />
+    <Content Include="Images\Ratings\Stars4.5.jpg" />
+    <Content Include="Images\Ratings\Stars5.0.jpg" />
+    <Content Include="Images\smalldisc.jpg" />
+    <Content Include="Images\TrailerThumbOverlaySmall.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Images\stars.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LFBackgroundAgent\LFBackgroundAgent.csproj">
+      <Project>{EA46501F-2ECF-46EF-AA6B-3F2F17E3793B}</Project>
+      <Name>LFBackgroundAgent</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Madebywill.Oauth\Madebywill.Helpers.csproj">
+      <Project>{6A297550-E00E-4046-9C3C-DE9EA41B227E}</Project>
+      <Name>Madebywill.Helpers</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ProjectExtensions />
+</Project>

@@ -1,0 +1,70 @@
+﻿<phone:PhoneApplicationPage 
+    x:Class="WPLovefilm.Views.TitleListing"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="696"
+    SupportedOrientations="Portrait"  Orientation="Portrait"
+    shell:SystemTray.IsVisible="True"
+    toolkit:TiltEffect.IsTiltEnabled="True">
+    
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="{StaticResource LFBackgroundBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="32"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <toolkit:PerformanceProgressBar VerticalAlignment="Top" Foreground="{StaticResource LFProgBarBrush}" Margin="0,2,0,0" IsIndeterminate="{Binding IsLoading}" />
+        
+        <Image Source="/Images/FilterActive.jpg" Grid.Row="1" HorizontalAlignment="Right" Margin="12,18,12,12" Stretch="None" VerticalAlignment="Top" Visibility="{Binding FilterActive}" />
+        
+        <TextBlock Grid.Row="2" Text="no matches found" Margin="22,150,10,20" Visibility="{Binding NoContentMessageVisibility}" FontSize="32" FontFamily="Segoe WP Semibold" Foreground="{StaticResource LFForegroundBrush}" />
+
+        <!--Pivot Control -->
+        <controls:Pivot x:Name="ListingPivot" Foreground="{StaticResource LFForegroundBrush}" SelectionChanged="UpdateSearchType" Title="{Binding PageTitle}" Grid.Row="1" FontSize="20">
+
+            <controls:PivotItem Header="all">
+                
+                <ListBox x:Name="AllTitleListBox" Height="536" Width="456" ItemsSource="{Binding TitleCollection}"
+                         ItemTemplate="{StaticResource ListingTitleTemplate}" SelectionChanged="TitleSelected">
+                </ListBox>
+            </controls:PivotItem>
+
+            <controls:PivotItem Header="film">
+                <ListBox x:Name="FilmTitleListBox" Height="536" Width="456" ItemsSource="{Binding TitleCollection}" 
+                         ItemTemplate="{StaticResource ListingTitleTemplate}" SelectionChanged="TitleSelected">
+                </ListBox>
+            </controls:PivotItem>
+
+            <controls:PivotItem Header="tv">
+                <ListBox x:Name="TVTitleListBox" Height="536" Width="456" ItemsSource="{Binding TitleCollection}" 
+                         ItemTemplate="{StaticResource ListingTitleTemplate}" SelectionChanged="TitleSelected">
+                </ListBox>
+            </controls:PivotItem>
+        </controls:Pivot>
+
+        <Popup x:Name="FormatPopup" />
+        
+        <Popup x:Name="FilterPopup" />
+    </Grid>
+    
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True" BackgroundColor="{StaticResource LFAppBarBackground}" ForegroundColor="{StaticResource LFAppBarForeground}">
+            <shell:ApplicationBarIconButton x:Name="prevButton" Text="back" IconUri="/Images/appbar.back.rest.png" Click="AppBarPrevPage" />
+            <shell:ApplicationBarIconButton x:Name="nextButton" Text="next" IconUri="/Images/appbar.next.rest.png" Click="AppBarNextPage" />
+
+            <shell:ApplicationBar.MenuItems>
+                <shell:ApplicationBarMenuItem Text="disc formats" x:Name="FormatMenuItem" Click="OpenFormatDialog" />
+                <shell:ApplicationBarMenuItem Text="apply filter" x:Name="FilterMenuItem" Click="OpenFilterDialog" />
+            </shell:ApplicationBar.MenuItems>
+
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
+
+</phone:PhoneApplicationPage>

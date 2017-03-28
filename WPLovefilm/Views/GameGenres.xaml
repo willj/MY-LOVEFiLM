@@ -1,0 +1,74 @@
+﻿<phone:PhoneApplicationPage 
+    x:Class="WPLovefilm.Views.GameGenres"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="480"
+    shell:SystemTray.IsVisible="True"
+    toolkit:TiltEffect.IsTiltEnabled="True">
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="{StaticResource LFBackgroundBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="32"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--TitlePanel contains the name of the application and page title-->
+        <StackPanel x:Name="TitlePanel" Grid.Row="1" Margin="12,17,0,28">
+            <TextBlock x:Name="ApplicationTitle" Text="GAMES" Style="{StaticResource PhoneTextNormalStyle}" Foreground="{StaticResource LFForegroundBrush}"/>
+            <TextBlock x:Name="PageTitle" Text="genres" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}" Foreground="{StaticResource LFForegroundBrush}"/>
+        </StackPanel>
+
+        <!--ContentPanel - place additional content here-->
+        <Grid x:Name="ContentPanel" Grid.Row="2" Margin="12,0,12,0">
+            <ListBox>
+                <ListBoxItem>
+                    <HyperlinkButton Content="Adventure" NavigateUri="/Views/GameListing.xaml?type=Games&amp;refine=Genres&amp;genre=Adventure" Style="{StaticResource BrowseHyperlinkButton}" />
+                </ListBoxItem>
+                <ListBoxItem>
+                    <HyperlinkButton Content="Arcade/Platform" NavigateUri="/Views/GameListing.xaml?type=Games&amp;refine=Genres&amp;genre=Arcade/Platform" Style="{StaticResource BrowseHyperlinkButton}" />
+                </ListBoxItem>
+                <ListBoxItem>
+                    <HyperlinkButton Content="Fighting" NavigateUri="/Views/GameListing.xaml?type=Games&amp;refine=Genres&amp;genre=Fighting" Style="{StaticResource BrowseHyperlinkButton}" />
+                </ListBoxItem>
+                <ListBoxItem>
+                    <HyperlinkButton Content="Flight simulation" NavigateUri="/Views/GameListing.xaml?type=Games&amp;refine=Genres&amp;genre=Flight simulation" Style="{StaticResource BrowseHyperlinkButton}" />
+                </ListBoxItem>
+                <ListBoxItem>
+                    <HyperlinkButton Content="Party/Music/Misc" NavigateUri="/Views/GameListing.xaml?type=Games&amp;refine=Genres&amp;genre=Party/Music/Misc" Style="{StaticResource BrowseHyperlinkButton}" />
+                </ListBoxItem>
+                <ListBoxItem>
+                    <HyperlinkButton Content="Puzzle/Board/Casino" NavigateUri="/Views/GameListing.xaml?type=Games&amp;refine=Genres&amp;genre=Puzzle/Board/Casino" Style="{StaticResource BrowseHyperlinkButton}" />
+                </ListBoxItem>
+                <ListBoxItem>
+                    <HyperlinkButton Content="Racing" NavigateUri="/Views/GameListing.xaml?type=Games&amp;refine=Genres&amp;genre=Racing" Style="{StaticResource BrowseHyperlinkButton}" />
+                </ListBoxItem>
+                <ListBoxItem>
+                    <HyperlinkButton Content="Role-playing" NavigateUri="/Views/GameListing.xaml?type=Games&amp;refine=Genres&amp;genre=Role-playing" Style="{StaticResource BrowseHyperlinkButton}" />
+                </ListBoxItem>
+                <ListBoxItem>
+                    <HyperlinkButton Content="Shooter" NavigateUri="/Views/GameListing.xaml?type=Games&amp;refine=Genres&amp;genre=Shooter" Style="{StaticResource BrowseHyperlinkButton}" />
+                </ListBoxItem>
+                <ListBoxItem>
+                    <HyperlinkButton Content="Sport" NavigateUri="/Views/GameListing.xaml?type=Games&amp;refine=Genres&amp;genre=Sport" Style="{StaticResource BrowseHyperlinkButton}" />
+                </ListBoxItem>
+                <ListBoxItem>
+                    <HyperlinkButton Content="Strategy" NavigateUri="/Views/GameListing.xaml?type=Games&amp;refine=Genres&amp;genre=Strategy" Style="{StaticResource BrowseHyperlinkButton}" />
+                </ListBoxItem>
+            </ListBox>
+        </Grid>
+    </Grid>
+
+
+
+</phone:PhoneApplicationPage>

@@ -1,0 +1,206 @@
+﻿<phone:PhoneApplicationPage 
+    x:Class="WPLovefilm.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="768" 
+    SupportedOrientations="Portrait"  Orientation="Portrait"
+    shell:SystemTray.IsVisible="True"
+    toolkit:TiltEffect.IsTiltEnabled="True">
+     
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="{StaticResource LFBackgroundBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <toolkit:PerformanceProgressBar VerticalAlignment="Top" Foreground="{StaticResource LFProgBarBrush}" Margin="0,2,0,0" IsIndeterminate="{Binding IsLoading}" />
+        
+        <!--Panorama control-->
+        <controls:Panorama Grid.Row="0" x:Name="HomePanorama" Title="my lovefilm" Foreground="{StaticResource LFForegroundBrush}" SelectionChanged="Panorama_SelectionChanged">
+            <!-- at home -->
+            <controls:PanoramaItem Header="at home">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition MaxHeight="80" Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Orientation="Horizontal" Margin="10,10,10,20" Visibility="{Binding ShowAwaitingAllocationCount}" Grid.Row="0">
+                        <TextBlock Text="{Binding TitlesAwaitingAllocation}" FontSize="32" FontFamily="Segoe WP Semibold" Foreground="{StaticResource LFForegroundBrush}" />
+                        <TextBlock Text=" awaiting allocation" FontSize="32" FontFamily="Segoe WP Semibold" Foreground="{StaticResource LFForegroundBrush}" />
+                    </StackPanel>
+
+                    <TextBlock Grid.Row="1" Text="no titles at home" Margin="10,10,10,20" Visibility="{Binding NoContentMessageVisibility}" FontSize="32" FontFamily="Segoe WP Semibold" Foreground="{StaticResource LFForegroundBrush}" />
+                    
+                    <ListBox x:Name="AtHomeListBox" ItemsSource="{Binding AtHomeTitles}" Grid.Row="1" Margin="0,12,0,0" SelectionChanged="AtHomeItemSelected">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Margin="5,0,0,10" Height="215" Width="451">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="50"></RowDefinition>
+                                        <RowDefinition Height="60"></RowDefinition>
+                                        <RowDefinition Height="30"></RowDefinition>
+                                        <RowDefinition Height="35"></RowDefinition>
+                                        <RowDefinition Height="35"></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="139"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock Text="{Binding TitleName}" FontSize="32" FontFamily="Segoe WP" Foreground="{StaticResource LFForegroundBrush}" 
+                                   Margin="10,0,0,5" Grid.Row="0" Grid.ColumnSpan="2" />
+
+                                    <Image Source="{Binding MediumImage}" Grid.Column="0" Grid.Row="1" Grid.RowSpan="5" Margin="10,0" Width="119" Height="169" />
+
+                                    <Image Source="{Binding RatingImage}" Grid.Row="1" Grid.Column="1" Margin="5,0,0,0" Width="200" Height="50" HorizontalAlignment="Left" />
+                                    
+                                    <TextBlock Text="{Binding RunTime, Converter={StaticResource HoursMinutesValueConverter}}" FontSize="24" FontFamily="Segoe WP" Margin="10,0,0,0" 
+                                   Foreground="{StaticResource LFForegroundBrush}" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" />
+
+                                    <TextBlock Text="{Binding Format}" FontSize="24" Grid.Row="3" Grid.Column="1" FontFamily="Segoe WP" Margin="10,3,0,0" Foreground="{StaticResource LFForegroundBrush}" />
+
+                                    <TextBlock Margin="10,3,0,0" Grid.Row="4" Grid.Column="1" Text="{Binding ShipDate, Converter={StaticResource ShipDateFormatValueConverter}}" FontSize="24" FontFamily="Segoe WP" Foreground="{StaticResource LFForegroundBrush}" />
+
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>                    
+                </Grid>
+
+            </controls:PanoramaItem>
+
+            <!-- browse -->
+            <controls:PanoramaItem Header="browse" Orientation="Horizontal">
+                <ScrollViewer>
+                    <StackPanel Margin="5,0,0,0">
+                    
+                        <StackPanel Orientation="Horizontal">
+                            <TextBox x:Name="SearchTextBox" Width="345" Style="{StaticResource SearchBox}" InputScope="Search"  />
+                            <Button x:Name="SearchButton" Style="{StaticResource CircleButton}" Click="Search">
+                                <Button.Content>
+                                    <Image Source="/Images/MaroonSearchIcon.png" />
+                                </Button.Content>
+                            </Button>
+                        </StackPanel>
+
+                        <TextBlock Text="film + tv" Foreground="{StaticResource LFForegroundBrush}" FontFamily="Segoe WP Semibold" FontSize="42" Margin="10,10,0,0" />
+
+                        <HyperlinkButton Content="new releases" Style="{StaticResource BrowseHyperlinkButton}" NavigateUri="/Views/TitleListing.xaml?type=Title&amp;refine=NewReleases" />
+                        <HyperlinkButton Content="coming soon" Style="{StaticResource BrowseHyperlinkButton}" NavigateUri="/Views/TitleListing.xaml?type=Title&amp;refine=ComingSoon" />
+                        <HyperlinkButton Content="most popular" Style="{StaticResource BrowseHyperlinkButton}" NavigateUri="/Views/TitleListing.xaml?type=Title&amp;refine=MostPopular" />
+                        <HyperlinkButton Content="genres" Style="{StaticResource BrowseHyperlinkButton}" NavigateUri="/Views/FilmGenres.xaml" />
+                        <!--
+                        <TextBlock Text="games" Foreground="{StaticResource LFForegroundBrush}" FontFamily="Segoe WP Semibold" FontSize="40" Margin="10,0,0,0" />
+
+                        <HyperlinkButton Content="new releases" Style="{StaticResource BrowseHyperlinkButton}" NavigateUri="/Views/GameListing.xaml?type=Games&amp;refine=NewReleases" />
+                        <HyperlinkButton Content="coming soon" Style="{StaticResource BrowseHyperlinkButton}" NavigateUri="/Views/GameListing.xaml?type=Games&amp;refine=ComingSoon" />
+                        <HyperlinkButton Content="genres" Style="{StaticResource BrowseHyperlinkButton}" NavigateUri="/Views/GameGenres.xaml" />
+                        -->
+                    </StackPanel>
+                </ScrollViewer>
+            </controls:PanoramaItem>
+
+            <!-- my lists -->
+            <controls:PanoramaItem Header="my lists">
+                <ListBox x:Name="MyQueuesListBox" ItemsSource="{Binding MyLists}" Grid.Row="1" SelectionChanged="QueueSelected">
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <toolkit:WrapPanel ItemHeight="210" ItemWidth="210"></toolkit:WrapPanel>
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Margin="10" Height="190" Width="190" Background="Maroon">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="55" />
+                                    <RowDefinition Height="70" />
+                                    <RowDefinition Height="65" />
+                                </Grid.RowDefinitions>
+
+                                <Image Source="{Binding AllocatedDiscsImage}" Width="87" Height="15" HorizontalAlignment="Right" Grid.Row="0" VerticalAlignment="Top" Margin="0,10,10,0" />
+                                                                
+                                <Image Source="/Images/HalfDiscIcon.png" Stretch="None" Grid.Row="0" Grid.RowSpan="3" HorizontalAlignment="Left" Margin="50,0,0,0" Width="36" Height="70" />
+
+                                <TextBlock Grid.Row="1" Text="{Binding Count}" Foreground="{StaticResource LFBackgroundBrush}" Width="104" FontSize="55" LineHeight="70" LineStackingStrategy="BlockLineHeight" FontFamily="Segoe WP Light" Margin="96,0,0,0" />
+
+                                <TextBlock Text="{Binding Name}" Foreground="{StaticResource LFBackgroundBrush}" Grid.Row="2" VerticalAlignment="Bottom" TextWrapping="Wrap"
+                                            Margin="10"  FontSize="18" FontFamily="Segoe WP" />
+                            </Grid>
+
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+
+            </controls:PanoramaItem>
+
+            <!-- about -->
+            <controls:PanoramaItem Header="about">
+                <Grid Width="415" Height="483">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="75" />
+                        <RowDefinition Height="70" />
+                        <RowDefinition Height="10" />
+                    </Grid.RowDefinitions>
+                    
+                    <StackPanel Grid.Row="0">
+                        <HyperlinkButton Content="settings" Style="{StaticResource BrowseHyperlinkButton}" Margin="0,0,0,20" NavigateUri="/Views/Settings.xaml" Visibility="{Binding ShowSettingsMenuItem}" />
+                        <HyperlinkButton Content="submit a review" Style="{StaticResource BrowseHyperlinkButton}" Margin="0,0,0,20" Click="SubmitReview" />
+                        <HyperlinkButton Content="feedback" Style="{StaticResource BrowseHyperlinkButton}" Margin="0,0,0,20" Click="FeedbackClick" />
+                        <HyperlinkButton Content="help" Style="{StaticResource BrowseHyperlinkButton}" Margin="0,0,0,20" Click="HelpClick" />
+                    </StackPanel>
+
+                    <Button Grid.Row="1" x:Name="LogoutButton" Content="Logout from LOVEFiLM" Style="{StaticResource SquareButton}" Foreground="{StaticResource LFForegroundBrush}" BorderBrush="{StaticResource LFForegroundBrush}" Click="LogoutButton_Click" />
+                    
+                    <Image Source="/Images/mbw.jpg" Width="181" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Bottom" />
+
+                    <TextBlock Text="{Binding VersionString}" Grid.Row="2" FontSize="20" Margin="3,5,5,10" VerticalAlignment="Top" Foreground="#4c4c4c" FontFamily="Segoe WP Semibold" />
+                    
+                    <Image Grid.Row="2" Source="/Images/LFLogo.jpg" Width="181" Height="63" HorizontalAlignment="Right" VerticalAlignment="Bottom" />                    
+
+                </Grid>
+            </controls:PanoramaItem>
+
+        </controls:Panorama>
+        
+        <Popup x:Name="LoginPopup">
+            <Grid Background="White" Width="480" Height="800">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="32"/>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="73" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="210" />
+                </Grid.ColumnDefinitions>
+                <StackPanel Margin="12,0" Grid.Row="1" Grid.ColumnSpan="2">
+
+                    <TextBlock Foreground="{StaticResource LFForegroundBrush}" Text="Hello" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+
+                    <TextBlock Foreground="{StaticResource LFForegroundBrush}" Text="To get started you need to login to your LOVEFiLM account." TextWrapping="Wrap" Margin="12" FontSize="24" />
+
+                    <TextBlock Foreground="{StaticResource LFForegroundBrush}" Text="This is used to give you access to your LOVEFiLM content, it should only happen once and you can logout whenever you like." TextWrapping="Wrap" Margin="12" FontSize="24" />
+
+                    <Button Style="{StaticResource SquareButton}" x:Name="LoginButton" Content="Login to LOVEFiLM" Margin="0,24"  Foreground="{StaticResource LFForegroundBrush}" BorderBrush="{StaticResource LFForegroundBrush}" Click="LoginButton_Click" />
+
+                    <HyperlinkButton Content="feedback" Style="{StaticResource BrowseHyperlinkButton}" Margin="0,30,0,20" Click="FeedbackClick" />
+                    <HyperlinkButton Content="help" Style="{StaticResource BrowseHyperlinkButton}" Margin="0,0,0,20" Click="HelpClick" />
+
+                </StackPanel>
+                <TextBlock Text="{Binding VersionString}" Grid.Row="2" Grid.Column="0" FontSize="20" Margin="24,5,5,5" VerticalAlignment="Bottom" Foreground="#4c4c4c" FontFamily="Segoe WP Semibold" />
+                
+                <Image Source="/Images/LFLogo.jpg" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Right" Height="63" Width="181" Margin="5,5,24,5" />
+            </Grid>
+        </Popup>
+        
+    </Grid>
+ 
+</phone:PhoneApplicationPage>

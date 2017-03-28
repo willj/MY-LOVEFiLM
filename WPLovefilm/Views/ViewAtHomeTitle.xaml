@@ -1,0 +1,141 @@
+﻿<phone:PhoneApplicationPage 
+    x:Class="WPLovefilm.Views.ViewAtHomeTitle"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:uc="clr-namespace:WPLovefilm.UserControls"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d" d:DesignHeight="696" d:DesignWidth="480"
+    shell:SystemTray.IsVisible="True">
+    
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="{StaticResource LFBackgroundBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="32" />
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <toolkit:PerformanceProgressBar VerticalAlignment="Top" Foreground="{StaticResource LFProgBarBrush}" Margin="0,2,0,0" IsIndeterminate="{Binding IsLoading}" />
+        
+        <!--TitlePanel contains the name of the application and page title-->
+        <StackPanel x:Name="TitlePanel" Grid.Row="1" Margin="12,17,0,28">
+            <TextBlock x:Name="ApplicationTitle" Text="{Binding Title.TitleName}" Style="{StaticResource PhoneTextTitle1Style}" FontFamily="{StaticResource PhoneFontFamilyNormal}" Foreground="{StaticResource LFForegroundBrush}" TextWrapping="Wrap" FontSize="40" LineHeight="45" MaxHeight="120" />
+        </StackPanel>
+
+        <!--ContentPanel - place additional content here-->
+        <ScrollViewer Grid.Row="2" >
+            <Grid x:Name="ContentPanel" Margin="24,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="174" />
+                    <ColumnDefinition Width="258" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="164" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Image Source="{Binding Title.MediumImage}" Height="214" Width="150" Margin="0,0,24,0" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" VerticalAlignment="Top" />
+
+                <Image Source="{Binding Title.RatingImage}" Width="200" Height="50" HorizontalAlignment="Left" Grid.Row="0" Grid.Column="1" />
+
+                <StackPanel Grid.Row="1" Grid.Column="1" Margin="3,0,0,0">
+
+                    <TextBlock Text="{Binding Title.NumberOfRatings, StringFormat='\{0\} ratings'}" FontSize="18" FontFamily="Segoe WP" Margin="0,0,0,5" TextWrapping="Wrap"
+                                       Foreground="{StaticResource LFForegroundBrush}" Grid.Row="0" Grid.Column="1" />
+                    
+                    <TextBlock Text="{Binding Title.Format}" FontSize="25" FontFamily="Segoe WP" Margin="0" TextWrapping="Wrap"
+                                       Foreground="{StaticResource LFForegroundBrush}" VerticalAlignment="Center" />
+
+                    <TextBlock Text="{Binding Title.RunTime,Converter={StaticResource HoursMinutesValueConverter}}" FontSize="25" FontFamily="Segoe WP" Margin="0,5,0,0" TextWrapping="Wrap"
+                                       Foreground="{StaticResource LFForegroundBrush}" VerticalAlignment="Center" Visibility="{Binding Title.IsVideo, Converter={StaticResource VisibilityValueConverter}}" />
+
+                    <TextBlock Text="{Binding Title.Players, Converter={StaticResource PlayerStringValueConverter}}" FontSize="25" FontFamily="Segoe WP" Margin="0,5,0,0" TextWrapping="Wrap"
+                            Foreground="{StaticResource LFForegroundBrush}" VerticalAlignment="Center" Visibility="{Binding Title.IsGame, Converter={StaticResource VisibilityValueConverter}}" Grid.Row="1" Grid.Column="1" />
+
+                    <Image Source="{Binding Title.CertImage}" Margin="0,5,0,0" HorizontalAlignment="Left" Width="50" Height="50"/>
+
+                </StackPanel>
+
+                <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,20,0,0">
+                    
+                    <Border Background="{StaticResource LFForegroundBrush}" Height="45" Margin="0,0,0,20">
+                        <TextBlock Margin="10,5,0,0" FontSize="22" FontFamily="Segoe WP" Text="{Binding AtHomeTitle.ShipDate, Converter={StaticResource FullShipDateFormatValueConverter}}" Foreground="{StaticResource LFBackgroundBrush}" />
+                        <!--<StackPanel Orientation="Horizontal" Margin="10,5,0,0">
+                            <TextBlock FontSize="22" FontFamily="Segoe WP" Text="Shipped " Foreground="{StaticResource LFBackgroundBrush}" />
+                            <TextBlock FontSize="22" FontFamily="Segoe WP" Text="{Binding AtHomeTitle.ShipDate, Converter={StaticResource FullDateFormatValueConverter}}" Foreground="{StaticResource LFBackgroundBrush}" />
+                        </StackPanel>-->
+                    </Border>
+                    
+                    <TextBlock x:Name="Synopsis" Text="{Binding Title.Synopsis}" FontSize="20" FontFamily="Segoe WP"  TextWrapping="Wrap"
+                                       Foreground="{StaticResource LFForegroundBrush}" VerticalAlignment="Center" MaxHeight="80" />
+                    
+                    <HyperlinkButton Content="Show more" Foreground="{StaticResource LFForegroundBrush}" HorizontalAlignment="Left" x:Name="ShowMoreSynopsis" Click="ShowMoreSynopsis_Click" 
+                                     Margin="-12,0,0,0" FontSize="20" FontFamily="Segoe WP Semibold" />
+                    
+                    <TextBlock Text="Release Date" FontSize="20" FontFamily="Segoe WP Semibold" TextWrapping="Wrap" Margin="0,20,0,0"
+                                       Foreground="{StaticResource LFForegroundBrush}" VerticalAlignment="Center" />
+                    <TextBlock Text="{Binding Title.ReleaseDate, Converter={StaticResource FullDateFormatValueConverter}}" FontSize="20" FontFamily="Segoe WP SemiLight" TextWrapping="Wrap"
+                                       Foreground="{StaticResource LFForegroundBrush}" />
+                    
+                    <TextBlock Text="Genre" FontSize="20" FontFamily="Segoe WP Semibold" TextWrapping="Wrap" Margin="0,10,0,0"
+                                       Foreground="{StaticResource LFForegroundBrush}" VerticalAlignment="Center" />
+                    <TextBlock Text="{Binding Title.Genres}" FontSize="20" FontFamily="Segoe WP SemiLight" TextWrapping="Wrap"
+                                       Foreground="{StaticResource LFForegroundBrush}" />
+
+                    <TextBlock Text="Directed By" FontSize="20" FontFamily="Segoe WP Semibold" TextWrapping="Wrap" Margin="0,10,0,0"
+                                       Foreground="{StaticResource LFForegroundBrush}" VerticalAlignment="Center" Visibility="{Binding Title.IsVideo, Converter={StaticResource VisibilityValueConverter}}" />
+                    <TextBlock Text="{Binding Title.Directors}" FontSize="20" FontFamily="Segoe WP SemiLight" TextWrapping="Wrap"
+                                       Foreground="{StaticResource LFForegroundBrush}" Visibility="{Binding Title.IsVideo, Converter={StaticResource VisibilityValueConverter}}" />
+
+                    <TextBlock Text="Cast" FontSize="20" FontFamily="Segoe WP Semibold" TextWrapping="Wrap" Margin="0,10,0,0"
+                                       Foreground="{StaticResource LFForegroundBrush}" VerticalAlignment="Center" Visibility="{Binding Title.IsVideo, Converter={StaticResource VisibilityValueConverter}}" />
+                    <TextBlock Text="{Binding Title.Actors}" FontSize="20" FontFamily="Segoe WP SemiLight" TextWrapping="Wrap"
+                                       Foreground="{StaticResource LFForegroundBrush}" Visibility="{Binding Title.IsVideo, Converter={StaticResource VisibilityValueConverter}}" />
+
+                    <TextBlock Text="Studio" FontSize="20" FontFamily="Segoe WP Semibold" TextWrapping="Wrap" Margin="0,10,0,0"
+                                       Foreground="{StaticResource LFForegroundBrush}" VerticalAlignment="Center" Visibility="{Binding Title.IsVideo, Converter={StaticResource VisibilityValueConverter}}" />
+                    <TextBlock Text="{Binding Title.Studio}" FontSize="20" FontFamily="Segoe WP SemiLight" TextWrapping="Wrap"
+                                       Foreground="{StaticResource LFForegroundBrush}" Visibility="{Binding Title.IsVideo, Converter={StaticResource VisibilityValueConverter}}" />
+
+                    <TextBlock Text="Developer" FontSize="20" FontFamily="Segoe WP Semibold" TextWrapping="Wrap" Margin="0,10,0,0"
+                                       Foreground="{StaticResource LFForegroundBrush}" VerticalAlignment="Center" Visibility="{Binding Title.IsGame, Converter={StaticResource VisibilityValueConverter}}" />
+                    <TextBlock Text="{Binding Title.Developer}" FontSize="20" FontFamily="Segoe WP SemiLight" TextWrapping="Wrap"
+                                       Foreground="{StaticResource LFForegroundBrush}" Visibility="{Binding Title.IsGame, Converter={StaticResource VisibilityValueConverter}}" />
+
+                </StackPanel>
+
+            </Grid>
+        </ScrollViewer>
+
+        <Popup x:Name="RatingPopup" Margin="0">
+            <StackPanel Height="264" Width="480" Background="{StaticResource LFSecondaryBackgroundBrush}" >
+
+                <Slider Style="{StaticResource UserRateStars}" Value="{Binding UserRating, Mode=TwoWay}" Margin="40,44,40,0" />
+
+                <Button Margin="24,39,0,0" Content="rate" Width="226" HorizontalAlignment="Left" Click="SubmitRating" Style="{StaticResource SquareButton}" />
+
+            </StackPanel>
+        </Popup>
+                
+        <uc:StatusMessageControl/>
+        
+    </Grid>
+    
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="False" BackgroundColor="{StaticResource LFAppBarBackground}" ForegroundColor="{StaticResource LFAppBarForeground}">
+            <shell:ApplicationBarIconButton Text="rate" IconUri="/Images/appbar.favs.rest.png" Click="RateTitle" />
+            <shell:ApplicationBarIconButton Text="share" IconUri="/Images/appbar.share.rest.png" Click="ShareTitle" />
+            <shell:ApplicationBarIconButton Text="trailer" IconUri="/Images/appbar.play.rest.png" Click="PlayTrailer" IsEnabled="False" />
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
+
+</phone:PhoneApplicationPage>

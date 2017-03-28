@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010 Express for Windows Phone
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPLovefilm", "WPLovefilm\WPLovefilm.csproj", "{1F04D290-7B66-4EB8-B7F3-3D8C036FE204}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Madebywill.Helpers", "Madebywill.Oauth\Madebywill.Helpers.csproj", "{6A297550-E00E-4046-9C3C-DE9EA41B227E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LFBackgroundAgent", "LFBackgroundAgent\LFBackgroundAgent.csproj", "{EA46501F-2ECF-46EF-AA6B-3F2F17E3793B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1F04D290-7B66-4EB8-B7F3-3D8C036FE204}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F04D290-7B66-4EB8-B7F3-3D8C036FE204}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F04D290-7B66-4EB8-B7F3-3D8C036FE204}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{1F04D290-7B66-4EB8-B7F3-3D8C036FE204}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F04D290-7B66-4EB8-B7F3-3D8C036FE204}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F04D290-7B66-4EB8-B7F3-3D8C036FE204}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{6A297550-E00E-4046-9C3C-DE9EA41B227E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A297550-E00E-4046-9C3C-DE9EA41B227E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A297550-E00E-4046-9C3C-DE9EA41B227E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A297550-E00E-4046-9C3C-DE9EA41B227E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA46501F-2ECF-46EF-AA6B-3F2F17E3793B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA46501F-2ECF-46EF-AA6B-3F2F17E3793B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA46501F-2ECF-46EF-AA6B-3F2F17E3793B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA46501F-2ECF-46EF-AA6B-3F2F17E3793B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
